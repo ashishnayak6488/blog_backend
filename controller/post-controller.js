@@ -17,6 +17,8 @@ export const createPost = async(request, response) => {
 
 export const getAllPosts = async(request, response) => {
 
+    console.log("Request",request.query);
+
     let username = request.query.username;
     let category = request.query.category;
     let posts;
@@ -41,6 +43,8 @@ export const getAllPosts = async(request, response) => {
 export const getPost = async(request, response) => {
 
     try {
+
+        console.log("Request Params",request.params.id);
         
         const post = await Post.findById(request.params.id);
         return response.status(200).json(post)

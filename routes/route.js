@@ -1,11 +1,18 @@
 import express from 'express';
 import {signupUser , loginUser} from '../controller/user-controller.js'
-import { uploadImage , getImage } from '../controller/image-controller.js';
+import { uploadImage, getImage } from '../controller/image-controller.js';
+import multer from 'multer';
 
-import upload from '../utils/upload.js'
+// import upload from '../utils/upload.js'
 import { createPost , getAllPosts , getPost ,updatePost , deletePost} from '../controller/post-controller.js';
 import { authenticateToken } from '../controller/jwt-controller.js';
 import { newComment , getComments , deleteComment } from '../controller/comment-controller.js';
+
+
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
+
+// const upload = multer({ dest: "uploads/" }); // or use memoryStorage/gridfs
 
 const router = express.Router();
 router.post('/signup' , signupUser)
